@@ -269,6 +269,11 @@ void process_message(unsigned char* message_piece, unsigned char* processed_piec
 
 	unsigned char ln[4], rn[4], er[6], ser[4];
 
+    if(mode==1)
+        printf("following 16 lines Encrypt message \"%s\"\n",message_piece);
+    else
+        printf("following 16 lines Decrypt message\"%s\"\n",message_piece);
+
 	int key_index;
 	for (k=1; k<=16; k++) {
 		memcpy(ln, r, 4);
@@ -404,6 +409,18 @@ void process_message(unsigned char* message_piece, unsigned char* processed_piec
 			l[i] = ln[i];
 			r[i] = rn[i];
 		}
+
+        printf("%d-th round results: ",k);
+		for(int i = 0; i < 4; i++){
+			printf("%02x ",l[i]);
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			printf("%02x ",r[i]);
+		}
+		printf("%02x",r[4]);
+		printf("\n");
+		
 	}
 
 	unsigned char pre_end_permutation[8];

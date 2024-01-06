@@ -51,6 +51,10 @@ int main(int argc, char* argv[]) {
 		short int bytes_written;
 		unsigned char* des_key = (unsigned char*) malloc(8*sizeof(char));
 		generate_key(des_key);
+		for (int i = 0; i < DES_KEY_SIZE; i++) {
+        	printf("%02x", des_key[i]);
+		}
+		printf("\n");
 		bytes_written = fwrite(des_key, 1, DES_KEY_SIZE, key_file);
 		if (bytes_written != DES_KEY_SIZE) {
 			printf("Error writing key to output file.");
